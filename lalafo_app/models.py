@@ -6,6 +6,9 @@ class Category(models.Model):
     category_name = models.CharField(max_length=32, unique=True)
     category_image = models.ImageField()
 
+    def __str__(self):
+        return self.category_name
+
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

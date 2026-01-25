@@ -31,12 +31,13 @@ INSTALLED_APPS = [
     'lalafo_app',
     'rest_framework',
     'phonenumber_field',
-
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # YENİ
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -71,13 +72,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db_lalafo_ai28',
-        'USER': 'postgres',
+        'USER': 'lalafo_user',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'PORT': '5432'
-
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -108,10 +109,28 @@ TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
+USE_L10N = True
+
+
 USE_TZ = True
+
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('ru', 'Russian'),
+    ('Ky' , 'Kyrgyz'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ky'
+MODELTRANSLATION_LANGUAGES = ('ru', 'en' , 'ky')
+
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
